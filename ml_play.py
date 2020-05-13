@@ -158,20 +158,20 @@ def decide1p(scene_info, bx, X):
 #             else:
 #                 # print("left", flush = True)
 #                 return "MOVE_LEFT"
-        if vx < 0:
-            X[0, 2] = -abs(X[0, 3]) - 3
-            X[0, 0] += vx
-            if X[0, 0] < 0:
-                X[0, 0] = 0
-            X[0, 1] = 420
-            # print(X)
-            C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
-            if C == "U":
-                # print("left", flush = True)
-                return "MOVE_LEFT"
-            else:   
-                # print("right", flush = True)
-                return "MOVE_RIGHT"
+#         if vx < 0:
+#             X[0, 2] = -abs(X[0, 3]) - 3
+#             X[0, 0] += vx
+#             if X[0, 0] < 0:
+#                 X[0, 0] = 0
+#             X[0, 1] = 420
+#             # print(X)
+#             C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
+#             if C == "U":
+#                 # print("left", flush = True)
+#                 return "MOVE_LEFT"
+#             else:   
+#                 # print("right", flush = True)
+#                 return "MOVE_RIGHT"
         # print()
     if scene_info["platform_1P"][0] + 20 > bx + 2.5:
         return "MOVE_LEFT"
