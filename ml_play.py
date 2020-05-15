@@ -140,8 +140,9 @@ def decide1p(scene_info, bx, X):
     global clf
     global scalerx_clf
     vx, vy = scene_info["ball_speed"]
-    if abs(scene_info["ball"][1] - 420) <= vy and (bx > scene_info["platform_1P"][0] and bx < scene_info["platform_1P"][0] + 40):
-        # print(X)
+    if (bx > 5 and bx < 190) and abs(scene_info["ball"][1] - 415) <= vy and (bx > scene_info["platform_1P"][0] + 5 and bx < scene_info["platform_1P"][0] + 40 - 5):
+    # if (bx > 5 and bx < 190) and abs(scene_info["ball"][1] - 420) <= vy and (bx > scene_info["platform_1P"][0] and bx < scene_info["platform_1P"][0] + 40):
+        print("1p", flush = True)
         X[0, 3] = - X[0, 3]
         if vx > 0:
             X[0, 2] = abs(X[0, 3]) + 3
@@ -173,48 +174,52 @@ def decide1p(scene_info, bx, X):
                 # print("right", flush = True)
                 return "MOVE_RIGHT"
         # print()
-    if scene_info["platform_1P"][0] + 20 > bx + 2.5:
+    if abs((scene_info["platform_1P"][0] + 20) - (bx + 2.5)) < 5:
+        return "NONE"
+    if (scene_info["platform_1P"][0] + 20) > (bx + 2.5):
         return "MOVE_LEFT"
     else:
         return "MOVE_RIGHT"
 
 def decide2p(scene_info, bx, X):
     vx, vy = scene_info["ball_speed"]
-    # if abs(scene_info["ball"][1] - 80) <= -vy:
-    #     print(X)
-    #     X[0, 3] = - X[0, 3]
-    #     if vx > 0:
-    #         X[0, 2] = abs(X[0, 3]) + 3
-    #         X[0, 0] += vx
-    #         if X[0, 0] > 195:
-    #             X[0, 0] = 195
-    #         X[0, 1] = 420
-    #         # X = scalerx_clf.transform(X.astype(float))
-    #         print(X)
-    #         C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
-    #         if C == "U":
-    #             print("right", flush = True)
-    #             return "MOVE_RIGHT"
-    #         else:
-    #             print("left", flush = True)
-    #             return "MOVE_LEFT"
-    #     if vx < 0:
-    #         X[0, 2] = -abs(X[0, 3]) - 3
-    #         X[0, 0] += vx
-    #         if X[0, 0] < 0:
-    #             X[0, 0] = 0
-    #         X[0, 1] = 420
-    #         print(X)
-    #         C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
-    #         if C == "U":
-    #             print("left", flush = True)
-    #             return "MOVE_LEFT"
-    #         else:   
-    #             print("right", flush = True)
-    #             return "MOVE_RIGHT"
-    #     print()
+    if (bx > 5 and bx < 190) and abs(scene_info["ball"][1] - 80) <= -vy and (bx > scene_info["platform_2P"][0] and bx < scene_info["platform_2P"][0] + 40):
+        print("\t2p", flush = True)
+        X[0, 3] = - X[0, 3]
+        if vx > 0:
+            X[0, 2] = abs(X[0, 3]) + 3
+            X[0, 0] += vx
+            if X[0, 0] > 195:
+                X[0, 0] = 195
+            X[0, 1] = 420
+            # X = scalerx_clf.transform(X.astype(float))
+            # print(X)
+            C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
+            if C == "D":
+                # print("right", flush = True)
+                return "MOVE_RIGHT"
+            else:
+                # print("left", flush = True)
+                return "MOVE_LEFT"
+        if vx < 0:
+            X[0, 2] = -abs(X[0, 3]) - 3
+            X[0, 0] += vx
+            if X[0, 0] < 0:
+                X[0, 0] = 0
+            X[0, 1] = 420
+            # print(X)
+            C = clf.predict(scalerx_clf.transform(X.astype(float)))[0]
+            if C == "D":
+                # print("left", flush = True)
+                return "MOVE_LEFT"
+            else:   
+                # print("right", flush = True)
+                return "MOVE_RIGHT"
+        # print()
 
-    if scene_info["platform_2P"][0] + 20 > bx + 2.5:
+    if abs((scene_info["platform_2P"][0] + 20) - (bx + 2.5)) < 5:
+        return "NONE"
+    if (scene_info["platform_2P"][0] + 20) > (bx + 2.5):
         return "MOVE_LEFT"
     else:
         return "MOVE_RIGHT"
