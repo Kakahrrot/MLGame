@@ -39,17 +39,17 @@ def ml_loop(side: str):
     rand_time = random.randint(0, 56)
 
     if side == "1P":
-        filename = path.join(path.dirname(__file__),"save\\Classification1p.pickle")
+        filename = path.join(path.dirname(__file__),"save/Classification1p.pickle")
         with open(filename, 'rb') as file:
             clf, scalerx_clf = pickle.load(file)
-        filename = path.join(path.dirname(__file__),"save\\Regressor1p.pickle")
+        filename = path.join(path.dirname(__file__),"save/Regressor1p.pickle")
         with open(filename, 'rb') as file:
             rgs, scalerx, scalery = pickle.load(file)
     else:
-        filename = path.join(path.dirname(__file__),"save\\Classification2p.pickle")
+        filename = path.join(path.dirname(__file__),"save/Classification2p.pickle")
         with open(filename, 'rb') as file:
             clf, scalerx_clf = pickle.load(file)
-        filename = path.join(path.dirname(__file__),"save\\Regressor2p.pickle")
+        filename = path.join(path.dirname(__file__),"save/Regressor2p.pickle")
         with open(filename, 'rb') as file:
             rgs, scalerx, scalery = pickle.load(file)
 
