@@ -49,7 +49,7 @@ def ml_loop(side: str):
         filename = path.join(path.dirname(__file__),"save/Classification2p.pickle")
         with open(filename, 'rb') as file:
             clf, scalerx_clf = pickle.load(file)
-        filename = path.join(path.dirname(__file__),"save\\Regressor2p.pickle")
+        filename = path.join(path.dirname(__file__),"save/Regressor2p.pickle")
         with open(filename, 'rb') as file:
             rgs, scalerx, scalery = pickle.load(file)
 
