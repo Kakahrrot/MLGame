@@ -125,7 +125,7 @@ class MLPlay:
             self.player_no = 2
         elif self.player == "player4":
             self.player_no = 3
-        path = os.path.join("save", "DQN_" + self.player + ".pickle")
+        path = os.path.join(os.path.dirname(__file__),"save", "DQN_" + self.player + ".pickle")
         self.status = 0
         self.car_vel = 0                            # speed initial
         self.car_pos = (0,0)                        # pos initial
